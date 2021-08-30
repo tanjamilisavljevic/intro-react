@@ -1,10 +1,16 @@
-import React from 'react';
+import React , { useState } from 'react';
 
 export default function TodoList() {
+    const initialTodos = ["First task", "Second task"];
+    const [todos, setTodos] = useState(initialTodos);
     return (
-        <ul>
-            <li> <input type="checkbox" /> First task </li>
-            <li> <input type="checkbox" /> Second task </li>
+        <ul> {
+            todos.map((todo) => (
+                <li  key={todo}>
+                    <input type="checkbox" />  {todo}
+                </li>
+            ))
+        }
         </ul>
     );
 }
