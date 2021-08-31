@@ -1,18 +1,21 @@
-import React , { useState } from 'react';
+import React, {useState} from 'react';
 
-export default function TodoList() {
-    const initialTodos = ["First task", "Second task"];
-    const [todos, setTodos] = useState(initialTodos);
+
+export default function TodoList(props) {
+    const todos = props.todos;
+
     return (
         <ul> {
             todos.map((todo) => (
-                <li  key={todo}>
-                    <input type="checkbox" />  {todo}
+                <li key={todo.name}>
+                    <input type="checkbox"/> {todo.name}
                 </li>
             ))
         }
         </ul>
     );
 }
+
+//TODO: Make li into a todo component
 
 
