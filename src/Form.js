@@ -9,28 +9,16 @@ export default function Form() {
         {name: 'Second task', id: 1, complete: 'false'}
     ];
 
-    // useEffect(() => {
-    //         const storedTodos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))
-    //         setTodos(storedTodos);
-    //     }
-    // );
-
     const inputRef = useRef();
     let loadedTodos;
 
-    // const [todos, setTodos] = useState(initialTodos);
-    // const [todos, setTodos] = useState(initialTodos.concat(JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))));
-    if (JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))){
-         loadedTodos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
-    }
-    else {
+    if (JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))) {
+        loadedTodos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
+    } else {
         loadedTodos = initialTodos;
     }
 
     const [todos, setTodos] = useState(loadedTodos);
-
-    // console.log(JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) initialTodos);
-
 
     function clickHandler() {
         const inputElement = inputRef.current.value;
@@ -42,7 +30,6 @@ export default function Form() {
         }, [todos]
     );
 
-    // console.log(todos);
     return (
         <>
             <label htmlFor="newTodo"> Add a To-do: </label>
@@ -52,7 +39,6 @@ export default function Form() {
             <TodoList todos={todos}/>
         </>
     );
-
 }
 
 

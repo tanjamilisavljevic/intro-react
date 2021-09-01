@@ -17,6 +17,5 @@ export default function TodoList(props) {
     );
 }
 
-//TODO: Make li into a todo component
 
 
