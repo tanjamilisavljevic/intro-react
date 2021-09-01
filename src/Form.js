@@ -16,9 +16,21 @@ export default function Form() {
     // );
 
     const inputRef = useRef();
+    let loadedTodos;
+
     // const [todos, setTodos] = useState(initialTodos);
-    const [todos, setTodos] = useState(initialTodos.concat(JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))));
-    // console.log(JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) && initialTodos);
+    // const [todos, setTodos] = useState(initialTodos.concat(JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))));
+    if (JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))){
+         loadedTodos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
+    }
+    else {
+        loadedTodos = initialTodos;
+    }
+
+    const [todos, setTodos] = useState(loadedTodos);
+
+    // console.log(JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) initialTodos);
+
 
     function clickHandler() {
         const inputElement = inputRef.current.value;
@@ -26,7 +38,7 @@ export default function Form() {
     }
 
     useEffect(() => {
-            window.localStorage.setItem(LOCAL_STORAGE_KEY + ".todos", JSON.stringify(todos));
+            window.localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todos));
         }, [todos]
     );
 
