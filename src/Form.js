@@ -1,19 +1,31 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef, useState, useEffect} from 'react';
 import TodoList from "./TodoList";
 
+const LOCAL_STORAGE_KEY = "MyTodoApp.todos";
 
 export default function Form() {
     const initialTodos = [
-        {name: 'First task', id: '1'},
-        {name: 'Second task', id: '1'}
+        {name: 'First task', id: '1', complete: 'false'},
+        {name: 'Second task', id: '1', complete: 'false'}
     ];
     const inputRef = useRef();
     const [todos, setTodos] = useState(initialTodos);
 
     function clickHandler() {
         const inputElement = inputRef.current.value;
-        setTodos([...todos, {name: inputElement, id: 1}]);
+        setTodos([...todos, {name: inputElement, id: 1, complete: 'false'}]);
     }
+
+    // useEffect(() => {
+    //         const storedTodos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))
+    //         setTodos(storedTodos);
+    //     }
+    // );
+
+    useEffect(() => {
+            window.localStorage.setItem(LOCAL_STORAGE_KEY + ".todos", JSON.stringify(todos));
+        }, [todos]
+    );
 
     console.log(todos);
     return (
